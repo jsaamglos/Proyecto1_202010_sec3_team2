@@ -54,11 +54,8 @@ public class Controller {
 				break;
 
 			case 3:
-				view.printMessage("--------- \nDar tamaño de la pila de comparendos: ");
-				dato = Integer.parseInt(lector.next());
-				view.printMessage("--------- \nDar el codigo de la infraccion: ");
-				codigo = lector.next();
-
+				view.printMessage("--------- \nDevuelve la Zona MinMax ");
+				respuesta=modelo.zonaMinMax();
 				if (respuesta != null) {
 					view.printMessage(respuesta);
 				} else {

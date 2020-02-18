@@ -1,7 +1,6 @@
 package model.data_structures;
 
-public class ListaEncadenada <T> implements IListaEncadenada <T>
-{
+public class ListaEncadenada<T> implements IListaEncadenada<T> {
 	// apuntador a primer elemento
 	private Node<T> primerElemento;
 
@@ -75,26 +74,32 @@ public class ListaEncadenada <T> implements IListaEncadenada <T>
 			System.out.println("No se encontro el elemento a eliminar.");
 		}
 
-    }
-    
-    public T darElemento(int index)
-    {
-        T elemento = null;
-        if(index < tamano)
-        {
-            Node<T> n = primerElemento;
-            for(int i = 0; i < index + 1;)
-            {
-                n = n.getSiguiente();
-            }
-            elemento = n.getElemento();
-        }
-        return elemento;
-    }
+	}
+
+	public T darElemento(int index) {
+		T elemento = null;
+		if (index < tamano) {
+			Node<T> n = primerElemento;
+			for (int i = 0; i < index + 1;) {
+				n = n.getSiguiente();
+			}
+			elemento = n.getElemento();
+		}
+		return elemento;
+	}
 
 	// existen elementos en la lista?
 	public boolean isEmpty() {
 		return tamano == 0;
+	}
+
+	public Node<T> darPrimeraPosicion()
+	{
+		return primerElemento;
+	}
+	public Node<T> darUltimaPosicion()
+	{
+		return ultimoElemento;
 	}
 
 	// retorna primer elemento

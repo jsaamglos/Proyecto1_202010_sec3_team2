@@ -4,12 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
-import java.util.Stack;
 
 import com.google.gson.Gson;
 
-import jdk.net.NetworkPermission;
 import model.data_structures.ListaEncadenada;
+import model.data_structures.Node;
 
 /**
  * Definicion del modelo del mundo
@@ -23,7 +22,7 @@ public class Modelo {
 	private ListaEncadenada<Multa> lista;
 
 	private PrimeraClase prClase;
-	private final static String path2 = "./data/comparendos_dei_2018.geojson";
+	private final static String path2 = "./data/comparendos_dei_2018_small.geojson";
 
 	private final static String path = "./data/comparendos_dei_2018.geojson";
 
@@ -91,5 +90,30 @@ public class Modelo {
 
 	public Multa getMultaMayorOBID() {
 		return lista.darUltimoElemento();
+	}
+
+	public String zonaMinMax() {
+		double minLat = 100;
+		double maxLat = 0;
+		double minLon = 100;
+		double maxLon = 0;
+		Node<Multa> actual = lista.darPrimeraPosicion();
+		while (actual != null) {
+			if (actual.getElemento().getGeometry().getCoord()[0] < minLat) {
+				minLat = actual.getElemento().getGeometry().getCoord()[0];
+			} else if (actual.getElemento().getGeometry().getCoord()[0] > maxLat) {
+				maxLat = actual.getElemento().getGeometry().getCoord()[0];
+			}
+			if (actual.getElemento().getGeometry().getCoord()[1] < minLon) {
+				minLon = actual.getElemento().getGeometry().getCoord()[1];
+			} else if (actual.getElemento().getGeometry().getCoord()[1] > maxLon) {
+				maxLon = actual.getElemento().getGeometry().getCoord()[1];
+			}
+			actual = actual.getSiguiente();
+
+		}
+
+		return "La minima Latitud es: " + minLat + "\nLa minima Longitud es: " + minLon + "\nLa minima Latitud es:"
+				+ maxLat + "\nLa maxima Longitud es:" + maxLon;
 	}
 }
