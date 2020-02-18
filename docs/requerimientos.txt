@@ -1,0 +1,93 @@
+Requerimientos
+
+-Agregar un comparendo a los datos
+{
+    Descripcion: mete un dato a la base de datos
+    Entrada: el dato de un comparendo.
+    Salida: El dato es agregado a los datos.
+    Complejidad: O(1)
+}
+-Remover un comparendo de los datos
+{
+    Descripcion: Saca un dato de la base de datos.
+    Entrada: Dato a sacar.
+    Salida: Dato ya no se encuentra en la base.
+    Complejidad: O(log(n))
+}
+-Consultar comparendo por por Localidad
+{
+    Descripcion: Busca el primer datos dentro del archivo con la localidad requerida.
+    Entrada: Localidad.
+    Salida: Comparendo con la localidad.
+    Complejidad: O(log(n))
+}
+-Consultar lista de comparendos en una fecha
+{
+    Descripcion: Saca una lista de comparendos en la fecha especificada.
+    Entrada: Fecha.
+    Salida: Lista de comparendos en la fecha especificada.
+    Complejidad: O(n)
+}
+-Reportar el numero de comparendos en dos fechas por infraccion
+{
+    Descripcion: Saca una tabla que compara el numero de comparendos de un tipo de infraccion en dos fechas distintas.
+    Entrada: Dos fechas.
+    Salida: Una tabla con el numero de comparendos de un tipo de infraccion en una de las dos fechas especificadas.
+    Complejidad: O(n)
+}
+-Consultar primer comparendo por infraccion
+{
+    Descripcion: Saca la informacion del primer comparendo con la infraccion dada.
+    Entrada: Infraccion.
+    Salida: Informacion del primer comparendo con la infraccion dada.
+    Complejidad: O(log(n))
+}
+-Mostrar lista de comparendos por infraccion
+{
+    Descripcion: Saca una lista con los comparendos con una infraccion requerida.
+    Entrada: Infraccion.
+    Salida: Lista de comparendos con la infraccion dada.
+    Complejidad: O(n)
+}
+-comparacion entre Particular y Publico del numero de tipos de infraccion
+{
+    Descripcion: Bota una tabla con la cantidad de comparendos en una infraccion que son publicos y los que son particulares.
+    Entrada: NULL
+    Salida: Tabla con el numero de comparendos que son publicos o pribados por cada tipo de infraccion
+    Complejidad: O(n)
+}
+-Mostrar el numero de cada comparendo de cada infraccion
+{
+    Descripcion: Muestra una lista de la cantidad de comparendos en cada infraccion. 
+    Entrada: NULL
+    Salida: Lista de infracciones donde se ve la cantidad de comparendos en cada infraccion.
+    Complejidad: O(n)
+}
+-consultar numero de comparendos en un tiempo determinado, ordenado
+{
+    Descripcion: Muestra el numero de comparendos en una ventana de tiempo especificada.
+    Entrada: Dos fechas.
+    Salida: Numero de Comparendos dentro de la ventana de tiempo.
+    Complejidad: O(n)
+}
+-Contar el numero de comparendos en cada localidad
+{
+    Descripcion: Muestra una lista de la cantidad de comparendos en cada localidad. 
+    Entrada: NULL
+    Salida: Lista de localidades en orden alfabetico donde se ve la cantidad de comparendos en cada localidad.
+    Complejidad: O(n)
+}
+-Ordenar los datos por fecha, infraccion y localidad
+{
+    Descripcion: Ordena la lista por fecha, infraccion o localidad.
+    Entrada: Criterio de ordenamiento.
+    Salida: Datos ordenados.
+    Complejidad: O(nlog(n))
+}
+-Agregar manualmente un dato
+{
+    Descripcion: Agregar un comparendo especificado por el usuario a los datos.
+    Entrada: Comparendo.
+    Salida: Comparendo dentro de los datos.
+    Complejidad: O(n)
+}
