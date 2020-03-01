@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import model.logic.Modelo;
@@ -55,7 +56,17 @@ public class Controller {
 
 			case 3:
 				view.printMessage("--------- \nDevuelve la Zona MinMax ");
-				respuesta=modelo.zonaMinMax();
+				respuesta = modelo.zonaMinMax();
+				if (respuesta != null) {
+					view.printMessage(respuesta);
+				} else {
+					view.printMessage("Hubo un problema");
+				}
+				break;
+
+			case 4:
+				view.printMessage("--------- \nArreglo con las multas para esa fecha ");
+				respuesta = modelo.comparendosXFecha("2018/01/17");
 				if (respuesta != null) {
 					view.printMessage(respuesta);
 				} else {
