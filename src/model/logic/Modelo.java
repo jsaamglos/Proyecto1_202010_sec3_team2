@@ -227,8 +227,102 @@ public class Modelo {
 	//B3
 	public String compareByInfraccion()
 	{
-		
-		return "";
+		//crear la lista de infracciones
+		ListaEncadenada<String> infracciones = new ListaEncadenada<>();
+
+		//vectors with the values of the counts
+		int[] publicCount = new int[200];
+		int[] privateCount = new int[200];
+
+		//get the first multa
+		Node<Multa> actual = lista.darPrimeraPosicion();
+
+		//iterate through the multas
+		while(actual != null)
+		{
+
+			//asume that the infraction is in the list
+			//iterate on the infractions
+			Node<String> infraccion = infracciones.darPrimeraPosicion();
+			int i = 0;
+
+			Caracteristica properties = actual.getElemento().getProperties();
+			
+			//look for the infraction index
+			for(;infraccion != null; i ++)
+			{
+				
+				//if found add to the respective vector index
+				if(infraccion.getElemento() == properties.getInfraccion())
+				{
+					if(properties.getServicio().equals("privado"))
+					{
+						privateCount[i]++;
+					}else if(properties.getServicio().equals("publico"))
+					{
+						publicCount[i]++;
+					}
+
+					//if found stop
+					break;
+				}
+
+				//infraccion: "He bro, i'm not it, are you it?"
+				//next: "I dont know, let me check."
+				infraccion = infraccion.getSiguiente();
+			}
+
+			//infraction was not found
+			if(infraccion == null)
+			{
+				//if array is full, add more space
+				if(i >= privateCount.length)
+				{
+					int[] privateTemp = new int[privateCount.length + 200];
+					int[] publicTemp = new int[publicCount.length + 200];
+
+					for(int j = 0; i < publicCount.length; i++)
+					{
+						privateTemp[j] = privateCount[j];
+						publicTemp[j] = publicCount[j];
+					}
+
+					privateCount = privateTemp;
+					publicCount = publicTemp;
+				}
+
+				//if not found, then add a new infraction
+				infracciones.agregarElemento(properties.INFRACCION);
+
+				//add the respective values to the vectors
+				if(properties.getServicio().equals("privado"))
+				{
+					privateCount[i] = 1;
+					publicCount[i] = 0;
+				}else if(properties.getServicio().equals("publico"))
+				{
+					publicCount[i] = 1;
+					privateCount[i] = 0;
+				}
+			}
+		}
+
+		//make a string to make the output
+		String result = "";
+
+		//add information to the string
+		result += "Infraccion\t|publico\t|privado\n";
+		Node<String> infraccion = infracciones.darPrimeraPosicion();
+		for(int i = 0; infraccion != null; i++)
+		{
+			result += infraccion.getElemento() + "\t\t|";
+			result += publicCount[i] + "\t\t|";
+			result += privateCount[i] + "\n";
+			infraccion = infraccion.getSiguiente();
+		}
+
+		//DONE
+		return result;
 	}
 	
 	public String primerComparendoLocalidad(String pLocalidad) {
