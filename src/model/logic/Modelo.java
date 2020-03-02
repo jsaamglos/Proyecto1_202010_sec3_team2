@@ -116,4 +116,76 @@ public class Modelo {
 		return "La minima Latitud es: " + minLat + "\nLa minima Longitud es: " + minLon + "\nLa minima Latitud es:"
 				+ maxLat + "\nLa maxima Longitud es:" + maxLon;
 	}
+
+	//Parte B
+	//------------------------------------------------------------------------------------------
+
+	//B1
+	//serch for the first "Multa" by infraction type
+	public String buscarInfraccion(String infracction)
+	{
+		//busca el nodo
+		Node<Multa> multa = lista.darPrimeraPosicion();
+		while(!multa.getElemento().getProperties().INFRACCION.equals(infracction))
+		{
+			multa = multa.getSiguiente();
+		}
+
+		//saca la informacion del nodo
+		Multa buscada = multa.getElemento();
+
+		//return
+		return buscada.toString();
+	}
+
+	//B2
+	public String listaPorInfraccion(String infraccion)
+	{
+		ListaEncadenada<Multa> lista = new ListaEncadenada<>();
+		Node<Multa> actual = this.lista.darPrimeraPosicion();
+		while(actual != null)
+		{
+			Multa e = actual.getElemento();
+			if(e.getProperties().INFRACCION.equals(infraccion))
+			{
+				lista.agregarElemento(e);
+
+				Node<Multa> aOrdenar = lista.darUltimaPosicion();
+
+				while(aOrdenar.getAnterior() != null && 
+					compararFechas(aOrdenar.getElemento().getProperties().FECHA_HORA, 
+						aOrdenar.getAnterior().getElemento().getProperties().FECHA_HORA) < 0)
+				{
+					boolean siguienteNulo = aOrdenar.getSiguiente() == null;
+					aOrdenar.getAnterior().setSiguiente(aOrdenar.getSiguiente());
+					if(!siguienteNulo)
+						aOrdenar.getSiguiente().setAnterior(aOrdenar.getAnterior());
+
+					aOrdenar.setSiguiente(aOrdenar.getAnterior());					
+					aOrdenar.setAnterior(aOrdenar.getAnterior().getAnterior());
+
+					if(!siguienteNulo)
+						aOrdenar.getSiguiente().setAnterior(aOrdenar);
+					aOrdenar.getAnterior().setSiguiente(aOrdenar);
+				}
+			}
+		}
+		Node<Multa> ordenado = lista.darPrimeraPosicion();
+		String retorno = "";
+
+		while(ordenado != null)
+		{
+			retorno += ordenado.getElemento().getProperties().toString();
+			retorno += "\n";
+		}
+		return retorno;
+	}
+
+	public int compararFechas(String fecha1, String fecha2)
+	{
+		//asume equal
+		int resultado = 0;
+
+		return resultado;
+	}
 }

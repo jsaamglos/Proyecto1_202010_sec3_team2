@@ -27,8 +27,8 @@ public class Controller {
 	public void run() {
 		Scanner lector = new Scanner(System.in);
 		boolean fin = false;
-		int dato = 0;
-		String codigo = "";
+		//int dato = 0;
+		//String codigo = "";
 		String respuesta = "";
 
 		while (!fin) {
@@ -44,7 +44,7 @@ public class Controller {
 
 			case 2:
 				view.printMessage(
-						"--------- \nMostrar la información del comparendo con el mayor OBJECTID encontrado.");
+						"--------- \nMostrar la informaciï¿½n del comparendo con el mayor OBJECTID encontrado.");
 				respuesta = modelo.getMultaMayorOBID().getProperties().toString();
 				if (respuesta != null) {
 					view.printMessage("Dato encontrado: " + respuesta);

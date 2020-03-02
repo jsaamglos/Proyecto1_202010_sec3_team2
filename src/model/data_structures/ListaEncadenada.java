@@ -15,7 +15,7 @@ public class ListaEncadenada<T> implements IListaEncadenada<T> {
 		tamano = 0;
 	}
 
-	// agrega un elemento
+	// agrega un elemento al final de la lista
 	public void agregarElemento(T dato) {
 
 		if (primerElemento == null) {

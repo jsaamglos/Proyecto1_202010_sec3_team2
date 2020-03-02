@@ -66,8 +66,12 @@ public class Caracteristica {
 	}
 
 	public String toString() {
-		return "Caracteristica [OBJECTID=" + OBJECTID + ", FECHA_HORA=" + FECHA_HORA + ", TIPO_SERVI=" + TIPO_SERVI + ", INFRACCION=" + INFRACCION
-				+ ", LOCALIDAD=" + LOCALIDAD + "]";
+		return "Caracteristica [OBJECTID=" + OBJECTID + 
+		", FECHA_HORA=" + FECHA_HORA + 
+		", TIPO_SERVI=" + TIPO_SERVI + 
+		", CLASE_VEHI" + CLASE_VEHI +
+		", INFRACCION=" + INFRACCION + 
+		", LOCALIDAD=" + LOCALIDAD + "]";
 	}
 
 }
