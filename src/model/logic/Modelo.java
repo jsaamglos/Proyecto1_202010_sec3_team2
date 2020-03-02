@@ -181,15 +181,56 @@ public class Modelo {
 		return retorno;
 	}
 
+	//compara dos strings con fechas escritas
+	//asume tipo yyyy/mm/dd o yy/mm/dd
 	public int compararFechas(String fecha1, String fecha2)
 	{
 		//asume equal
 		int resultado = 0;
 
+		String[] strArr;
+
+		//remove the "/" in fecha1
+		strArr = fecha1.split("/");
+		fecha1 = "";
+
+		for(String str: strArr)
+		{
+			fecha1 += str;
+		}
+
+		//remove "/" in fecha2
+		strArr = fecha2.split("/");
+		fecha2 = "";
+
+		for(String str: strArr)
+		{
+			fecha2 += str;
+		}
+
+		//make them integers
+		int f1 = Integer.parseInt(fecha1);
+		int f2 = Integer.parseInt(fecha2);
+	
+		//compare the 2
+		if(f1 < f2)
+		{
+			resultado = 1;
+		}else if(f1 > f2)
+		{
+			resultado = -1;
+		}
+
 		return resultado;
 	}
 
 	//B3
+	public String compareByInfraccion()
+	{
+		
+		return "";
+	}
+	
 	public String primerComparendoLocalidad(String pLocalidad) {
 		Multa resp = null;
 		Node<Multa> actual = lista.darPrimeraPosicion();
