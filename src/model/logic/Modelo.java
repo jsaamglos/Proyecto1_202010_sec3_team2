@@ -188,4 +188,99 @@ public class Modelo {
 
 		return resultado;
 	}
+
+	//B3
+	public String primerComparendoLocalidad(String pLocalidad) {
+		Multa resp = null;
+		Node<Multa> actual = lista.darPrimeraPosicion();
+		while (actual != null && resp == null) {
+			if (actual.getElemento().getProperties().getLocalidad().equalsIgnoreCase(pLocalidad)) {
+				resp = actual.getElemento();
+			}
+			actual = actual.getSiguiente();
+		}
+		if (resp == null) {
+			return "No existe ningun comparendo para esa localidad";
+		}
+
+		return "El comparendo tiene " + resp.getProperties().toString();
+	}
+
+	public static void merge(Multa[] arreglo_izq, Multa[] arreglo_der, Multa[] arreglo, int tam_izq, int tam_der) {
+
+		int i = 0, izq = 0, der = 0;
+		while (izq < tam_izq && der < tam_der) {
+
+			if (arreglo_izq[izq].getProperties().getInfraccion()
+					.compareTo(arreglo_der[der].getProperties().getInfraccion()) > 0) {
+				arreglo[i++] = arreglo_izq[izq++];
+			} else {
+				arreglo[i++] = arreglo_der[der++];
+			}
+		}
+		while (izq < tam_izq) {
+			arreglo[i++] = arreglo_izq[izq++];
+		}
+		while (der < tam_der) {
+			arreglo[i++] = arreglo_der[der++];
+		}
+	}
+
+	public static void mergeSort(Multa[] arreglo, int size) {
+		if (size < 2) {
+			return;
+		}
+
+		int mitad = size / 2;
+		Multa[] arreglo_izq = new Multa[mitad];
+		Multa[] arreglo_der = new Multa[size - mitad];
+
+		int j = 0;
+		for (int i = 0; i < size; ++i) {
+			if (i < mitad) {
+				arreglo_izq[i] = arreglo[i];
+			} else {
+				arreglo_der[j] = arreglo[i];
+				j = j + 1;
+			}
+		}
+		try {
+			mergeSort(arreglo_izq, mitad);
+			mergeSort(arreglo_der, size - mitad);
+			merge(arreglo_izq, arreglo_der, arreglo, mitad, size - mitad);
+		} catch (Exception e) {
+
+		}
+	}
+
+	public String comparendosXFecha(String pFecha) {
+		String resp = "";
+		int tamanoFecha = 0;
+		Node<Multa> actual = lista.darPrimeraPosicion();
+		int posicionAgregar = 0;
+		while (actual != null) {
+			if (actual.getElemento().getProperties().getFecha().equals(pFecha)) {
+				tamanoFecha++;
+
+			}
+			actual = actual.getSiguiente();
+		}
+		Multa[] multas = new Multa[tamanoFecha];
+		actual = lista.darPrimeraPosicion();
+		while (actual != null) {
+			if (actual.getElemento().getProperties().getFecha().equals(pFecha)) {
+				multas[posicionAgregar] = actual.getElemento();
+				posicionAgregar++;
+			}
+			actual = actual.getSiguiente();
+		}
+		System.out.println(multas.length);
+		mergeSort(multas, multas.length);
+
+		for (int i = 0; i < multas.length; i++) {
+			System.out.println(i);
+			resp += multas[i].getProperties().toString() + "\n";
+		}
+		return resp;
+	}
 }
