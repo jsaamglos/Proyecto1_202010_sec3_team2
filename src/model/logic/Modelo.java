@@ -496,4 +496,75 @@ public class Modelo {
 		//DONE
 		return result;
 	}
+
+	public String comparendosPorLocalidad()
+	{
+		//localidades vector
+		String[] localidades = {
+			"Antonio Nariño",
+			"Chapinero",
+			"Engativa",
+			"Fontivon",
+			"Martires",
+			"San Fernando",
+			"Santa Fe",
+			"Teusaquillo",
+			"Usaquen",
+			"Usme"
+		};
+
+		//set vector to 0s
+		int[] comparendos = new int[10];
+		for(int i = 0; i < localidades.length; i++)
+		{
+			comparendos[i] = 0;
+		}
+
+		//Iterate over the Multas
+		Node<Multa> actual = lista.darPrimeraPosicion();
+
+		while(actual != null)
+		{
+			int i = 0;
+			Caracteristica properties = actual.getElemento().getProperties();
+
+			//what localidad is the current multa
+			for(; i < localidades.length; i++)
+			{
+				if(properties.LOCALIDAD.equals(localidades[i]))
+				{
+					comparendos[i]++;
+					break;
+				}
+			}
+		}
+
+		//set the names of the city to 
+		for(int i = 0; i < localidades.length; i++)
+		{
+			while(localidades[i].length() < 16)
+				localidades[i] += "-";
+			localidades[i] += "|";
+		}
+
+		//make the String
+		String result = "";
+		result += "Aproximacion del numero de comparendos por localidad.\n";
+
+		for(int i = 0; i < localidades.length; i++)
+		{
+			result += localidades[i];
+
+			if(comparendos[i] == 0)
+				result += "Sin comparendos";
+
+			for(int j = comparendos[i]; j > 0; j -= 50)
+				result += "*";
+			
+			result += "\n";
+		}
+
+		//Out
+		return result;
+	}
 }
