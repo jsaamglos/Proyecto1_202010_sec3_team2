@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 import model.logic.Modelo;
@@ -28,8 +27,8 @@ public class Controller {
 	public void run() {
 		Scanner lector = new Scanner(System.in);
 		boolean fin = false;
-		//int dato = 0;
-		//String codigo = "";
+		String dato = "";
+		// String codigo = "";
 		String respuesta = "";
 
 		while (!fin) {
@@ -40,23 +39,26 @@ public class Controller {
 			case 1:
 				view.printMessage("--------- \nCargar Datos \nDar cantidad de datos cargados: ");
 				modelo.crearLista();
-				view.printMessage("Se cargaron los Comparendos en total son:" + modelo.darTamanoLista());
+				respuesta = modelo.getMultaMayorOBID().getProperties().toString();
+				view.printMessage("Se cargaron los Comparendos en total son:" + modelo.darTamanoLista()
+						+ "\nEl objeto con mayor ObjectID es:" + respuesta + "\n" + modelo.zonaMinMax());
 				break;
 
 			case 2:
-				view.printMessage(
-						"--------- \nMostrar la informaciï¿½n del comparendo con el mayor OBJECTID encontrado.");
-				respuesta = modelo.getMultaMayorOBID().getProperties().toString();
+				view.printMessage("--------- \nPrimer Comparendo para la localidad Indicada: ");
+				dato = lector.next();
+				respuesta = modelo.primerComparendoLocalidad(dato);
 				if (respuesta != null) {
-					view.printMessage("Dato encontrado: " + respuesta);
+					view.printMessage(respuesta);
 				} else {
-					view.printMessage("Dato NO encontrado");
+					view.printMessage("Hubo un problema");
 				}
 				break;
 
 			case 3:
-				view.printMessage("--------- \nDevuelve la Zona MinMax ");
-				respuesta = modelo.zonaMinMax();
+				view.printMessage("--------- \nArreglo con las multas para esa fecha (YYYY/MM/DD) ");
+				dato = lector.next();
+				respuesta = modelo.comparendosXFecha(dato);
 				if (respuesta != null) {
 					view.printMessage(respuesta);
 				} else {
@@ -65,15 +67,15 @@ public class Controller {
 				break;
 
 			case 4:
-				view.printMessage("--------- \nArreglo con las multas para esa fecha ");
-				respuesta = modelo.comparendosXFecha("2018/01/17");
+				view.printMessage("--------- \nNumero de comparendos por infracción: ");
+				dato = lector.next();
+				respuesta = modelo.compararInfraccionesPorFechas(dato);
 				if (respuesta != null) {
 					view.printMessage(respuesta);
 				} else {
 					view.printMessage("Hubo un problema");
 				}
 				break;
-
 			case 0:
 				view.printMessage("--------- \n Hasta pronto !! \n---------");
 				lector.close();
