@@ -418,4 +418,82 @@ public class Modelo {
 		}
 		return resp;
 	}
+
+	public String numeroDeComparendosPorInfraccion()
+	{
+		ListaEncadenada<String> infracciones = new ListaEncadenada<>();
+
+		int[] comparendos = new int[200];
+
+		Node<Multa> actual = lista.darPrimeraPosicion();
+		while(actual != null)
+		{
+			Node<String> infraccion = infracciones.darPrimeraPosicion();
+			int i = 0;
+
+			Caracteristica properties = actual.getElemento().getProperties();
+			
+			//look for the infraction index
+			for(;infraccion != null; i ++)
+			{
+				
+				//if found add to the respective vector index
+				if(infraccion.getElemento() == properties.getInfraccion())
+				{
+					//add one to the comparendo
+					comparendos[i]++;
+
+					//if found stop
+					break;
+				}
+
+				//infraccion: "He bro, i'm not it, are you it?"
+				//next: "I dont know, let me check."
+				infraccion = infraccion.getSiguiente();
+			}
+
+			//infraction was not found
+			if(infraccion == null)
+			{
+				//if array is full, add more space
+				if(i >= comparendos.length)
+				{
+					int[] comparendosTemp = new int[comparendos.length + 200];
+
+					for(int j = 0; i < comparendos.length; i++)
+						comparendosTemp[j] = comparendos[j];
+
+					comparendos = comparendosTemp;
+				}
+
+				//if not found, then add a new infraction
+				infracciones.agregarElemento(properties.INFRACCION);
+
+				//add the respective values to the vectors
+				if(properties.getServicio().equals("privado"))
+				{
+					comparendos[i] = 1;
+				}else if(properties.getServicio().equals("publico"))
+				{
+					comparendos[i] = 1;
+				}
+			}
+		}
+		
+		//make a string to make the output
+		String result = "";
+
+		//add information to the string
+		result += "Infraccion\t|publico\t|privado\n";
+		Node<String> infraccion = infracciones.darPrimeraPosicion();
+		for(int i = 0; infraccion != null; i++)
+		{
+			result += infraccion.getElemento() + "\t\t|";
+			result += comparendos[i] + "\n";
+			infraccion = infraccion.getSiguiente();
+		}
+
+		//DONE
+		return result;
+	}
 }
