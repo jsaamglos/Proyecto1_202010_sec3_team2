@@ -133,7 +133,7 @@ public class Modelo {
 		Multa buscada = multa.getElemento();
 
 		// return
-		return buscada.toString();
+		return buscada.getProperties().toString();
 	}
 
 	// B2
@@ -158,11 +158,13 @@ public class Modelo {
 					aOrdenar.setSiguiente(aOrdenar.getAnterior());
 					aOrdenar.setAnterior(aOrdenar.getAnterior().getAnterior());
 
-					if (!siguienteNulo)
+					if (!siguienteNulo) {
 						aOrdenar.getSiguiente().setAnterior(aOrdenar);
-					aOrdenar.getAnterior().setSiguiente(aOrdenar);
+						aOrdenar.getAnterior().setSiguiente(aOrdenar);
+					}
 				}
 			}
+			actual = actual.getSiguiente();
 		}
 		Node<Multa> ordenado = lista.darPrimeraPosicion();
 		String retorno = "";
@@ -398,7 +400,8 @@ public class Modelo {
 		}
 		return resp;
 	}
-// Req 3A	
+
+	// Req 3A
 	public String compararInfraccionesPorFechas(String pFechas) {
 		String[] strArr;
 		strArr = pFechas.split(",");
@@ -507,6 +510,7 @@ public class Modelo {
 		}
 	}
 
+	// Req 3C
 	public String numeroDeComparendosPorInfraccion() {
 		System.out.println("ENTRO");
 		ListaEncadenada<String> infracciones = new ListaEncadenada<>();
@@ -578,6 +582,7 @@ public class Modelo {
 		return result;
 	}
 
+	// Req 1C
 	public String comparendosPorLocalidad() {
 		// localidades vector
 		String[] localidades = { "Antonio Nariño", "Chapinero", "Engativa", "Fontivon", "Martires", "San Fernando",

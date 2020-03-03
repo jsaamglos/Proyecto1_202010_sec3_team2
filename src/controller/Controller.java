@@ -67,9 +67,57 @@ public class Controller {
 				break;
 
 			case 4:
-				view.printMessage("--------- \nNumero de comparendos por infracción: ");
+				view.printMessage("--------- \nComparar Infracciones Por Fechas (YYYY/MM/DD,YYYY/MM/DD): ");
 				dato = lector.next();
 				respuesta = modelo.compararInfraccionesPorFechas(dato);
+				if (respuesta != null) {
+					view.printMessage(respuesta);
+				} else {
+					view.printMessage("Hubo un problema");
+				}
+				break;
+			case 5:
+				view.printMessage("--------- \nConsulta Primer comparendo por Infracción Dada ");
+				dato = lector.next();
+				respuesta = modelo.buscarInfraccion(dato);
+				if (respuesta != null) {
+					view.printMessage(respuesta);
+				} else {
+					view.printMessage("Hubo un problema");
+				}
+				break;
+			case 6:
+				view.printMessage("--------- \nConsulta los comparendos dado un codigo de Infraccion ");
+				dato = lector.next();
+				respuesta = modelo.listaPorInfraccion(dato);
+				if (respuesta != null) {
+					view.printMessage(respuesta);
+				} else {
+					view.printMessage("Hubo un problema");
+				}
+				break;
+			case 7:
+				view.printMessage(
+						"--------- \nTabla con comparendos por cada codigo Infraccion para Particulares y Publicos. ");
+				respuesta = modelo.compareByInfraccion();
+				if (respuesta != null) {
+					view.printMessage(respuesta);
+				} else {
+					view.printMessage("Hubo un problema");
+				}
+				break;
+			case 8:
+				view.printMessage("--------- \nuestra el numero de comparendos por codigo Infraccion por localidad. ");
+				respuesta = modelo.comparendosPorLocalidad();
+				if (respuesta != null) {
+					view.printMessage(respuesta);
+				} else {
+					view.printMessage("Hubo un problema");
+				}
+				break;
+			case 9:
+				view.printMessage("--------- \nHistograma con el numero de comparendos por Localidad ");
+				respuesta = modelo.numeroDeComparendosPorInfraccion();
 				if (respuesta != null) {
 					view.printMessage(respuesta);
 				} else {
