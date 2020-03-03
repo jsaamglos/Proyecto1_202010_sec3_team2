@@ -510,7 +510,7 @@ public class Modelo {
 		}
 	}
 
-	// Req 3C
+	// Req 1C
 	public String numeroDeComparendosPorInfraccion() {
 		System.out.println("ENTRO");
 		ListaEncadenada<String> infracciones = new ListaEncadenada<>();
@@ -582,7 +582,7 @@ public class Modelo {
 		return result;
 	}
 
-	// Req 1C
+	// Req 3C
 	public String comparendosPorLocalidad() {
 		// localidades vector
 		String[] localidades = { "Antonio Nariño", "Chapinero", "Engativa", "Fontivon", "Martires", "San Fernando",

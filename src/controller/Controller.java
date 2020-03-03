@@ -108,7 +108,7 @@ public class Controller {
 				break;
 			case 8:
 				view.printMessage("--------- \nuestra el numero de comparendos por codigo Infraccion por localidad. ");
-				respuesta = modelo.comparendosPorLocalidad();
+				respuesta = modelo.numeroDeComparendosPorInfraccion();
 				if (respuesta != null) {
 					view.printMessage(respuesta);
 				} else {
@@ -117,7 +117,7 @@ public class Controller {
 				break;
 			case 9:
 				view.printMessage("--------- \nHistograma con el numero de comparendos por Localidad ");
-				respuesta = modelo.numeroDeComparendosPorInfraccion();
+				respuesta = modelo.comparendosPorLocalidad();
 				if (respuesta != null) {
 					view.printMessage(respuesta);
 				} else {
